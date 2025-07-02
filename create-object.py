@@ -23,8 +23,15 @@ def uploadObject(s3Client, bucket, name, key, contentType, metadata={}):
 
     ## Start TODO 5: create a object by transferring the file to the S3 bucket, 
     ## set the contentType of the file and add any metadata passed to this function.
-    
-    
+    response = s3Client.upload_file(
+        Bucket=bucket, 
+        Key=key,
+        Filename=name,
+        ExtraArgs={
+            'ContentType': contentType,
+            'Metadata': metadata
+            }
+    )   
     
     ## End TODO 5
     return "Finished creating object\n"

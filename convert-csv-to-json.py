@@ -33,8 +33,10 @@ def getCSVFile(s3Client, bucket, key):
     
     ## Start TODO 6: Download the file contents to the 
     ## bytes_buffer object so that it can be decoded to a string.
-    
-    
+    s3Client.download_fileobj(
+      Bucket=bucket, 
+      Key=key, 
+      Fileobj=bytes_buffer)
 
     ## End TODO 6
 
@@ -43,8 +45,13 @@ def getCSVFile(s3Client, bucket, key):
 
 def createObject(s3Client, bucket, key, data, contentType, metadata={}):
     ## Start TODO 7: Create an S3 object with the converted data
-    
-    
+    s3Client.put_object(
+        Bucket=bucket, 
+        Key=key,
+        Body=data,
+        ContentType=contentType,
+        Metadata=metadata
+    )
 
     ## End TODO 7
     
